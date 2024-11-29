@@ -1,0 +1,345 @@
+p{
+    padding: 0;
+    margin: 0;
+}
+.main {
+    font-family: 'Courier', monospace;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxrow {
+
+    width: 70vw;
+    height: 15vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid black;
+    margin: none;
+    padding: none;
+    align-items: center;
+}
+
+.top {
+    display:flex;
+    flex-direction: column;
+    background: url("murdersrow-ai3.jpg") no-repeat center center;
+    font-size: x-large;
+    border: none;
+}
+
+.navbar {
+    color: white;
+    display:flex;
+    flex-direction: column;
+    height: 4vh;
+    width: 70vw;
+    background-color: #293c75;
+    text-align: center;
+}
+.page-title {
+    color: white;
+    margin-bottom: 0%;
+    margin-top: 5px;
+    /* font-size:x-large; */
+}
+
+.page-tag {
+    font-size: small;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.middle {
+    height: 78vh;
+    flex-direction: row;
+    flex-wrap: none;
+    padding: none;
+    background-color: rgba(0,0,0, 50%);
+    border: none;
+}
+.boxcol {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 32%;
+    border: 1px solid black;
+    margin: none;
+    padding: none;
+}
+
+
+.center {
+    border: 1px solid;
+    width: 66%;
+    margin-left: .5%;
+    margin-right: .5%;
+}
+.left, .right {
+    border: none;
+    width: 16%;
+}
+.center,.left,.right {
+    height: 76vh;
+    background-color: white;
+}
+.bottom {
+    background: rgba(0,0,0, 50%);
+    color: white;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: none;
+    padding: none;
+}
+.left-content, .right-content {
+    height: 78vh;
+    display: flex;
+    font-size: xx-small !important;
+    text-align: left;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    background-color: white;
+    border: 1px solid grey;
+    font-size: x-small;
+    margin 0;
+    padding: 0;
+    overflow-y: auto; /* Enable vertical scrolling within each box */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+
+
+}
+
+.left-advert, .right-advert {
+    display: none;
+}
+
+.center {
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
+
+
+.searchtree {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    padding-inline-start:4px;
+}
+
+#searchButton {
+    margin: 0;
+    padding: 0;
+    width: 75%;
+    height: 2.5vh;
+    font-size: xx-small;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    bottom:0; /* Align to the bottom of the parent */
+    left: 5; /* Ensure it's aligned to the left edge */
+}
+
+.timeline-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.timeline-container {
+
+    justify-content: center;
+    display: flex;
+    position: relative;
+    width: 90%;
+    margin-left: 10%;
+}
+
+.timeline {
+    display:flex;
+    justify-content: center;
+    position: relative;
+    height: 4vh;
+
+    border-top: 4px solid #7d73b9dc;
+    width: 100%;
+}
+
+.event {
+    position: absolute;
+    top: -7.5px;
+    width:10px;
+    height: 10px;
+    background-color: #293c75;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+.event:hover {
+    background-color: #007bff;
+}
+
+.event .label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: xx-small;
+    white-space: nowrap;
+    color: #060606;
+}
+
+.event:nth-child(odd) .label {
+    top: 5px; /* Below the timeline */
+}
+
+.event:nth-child(even) .label {
+    top: 45px; /* Further below the timeline */
+}
+
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    background: #0a015e;
+    color: #fff;
+    font-size: xx-small;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+}
+/* Treeview Search Styles*/
+
+/* Container div */
+.tree-container {
+    width: 300px; /* Set width */
+    height: 400px; /* Set height */
+    overflow-y: auto; /* Add scrolling for overflow content */
+    border: 1px solid #ccc; /* Add a border */
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Tree View styles */
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+.tree-item {
+    cursor: pointer;
+}
+.nested {
+    display: none;
+}
+.caret::before {
+    content: "\25B6"; /* Triangle pointing right */
+    display: inline-block;
+    margin-right: 5px;
+}
+.caret-down::before {
+    transform: rotate(90deg); /* Rotate the triangle to point down */
+}
+
+
+
+/* =========================START TABLE STYLES===================================              */
+
+
+/* table {
+    
+    border-collapse: collapse;
+    width: 100%;
+    font-size: xx-small;
+}
+th, td {
+    border: 1px solid rgb(251, 248, 248);
+    text-align: center;
+    padding: 0%;
+    width:6px; /* Set the width of each cell */
+    /* height: .20rem; Set the height of each cell */
+/* }
+
+.color-1 { background-color: lightblue; }
+.color-2 { background-color: rgb(145, 135, 171); }
+.color-3 { background-color: rgb(100, 90, 157); }
+.color-4 { background-color: #2f0883; }
+.color-5 { background-color: rgb(5, 1, 39); }
+.table {
+    margin: 5 auto;
+    width: 100%;
+    border: 2px solid black;
+    padding: 2px
+}  */
+
+table {
+    /* border: 1px solid black; */
+    border-collapse: collapse; /* Remove double borders */
+    font-family: 'Courier New', Courier, monospace; /* Use Courier font */
+    font-size: xx-small; /* Set font size */
+    width: 70vw; 
+    table-layout: auto; /* Adjust column widths to fit content */
+}
+#date-range{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.color-1 { background-color: lightblue; }
+.color-2 { background-color: rgb(145, 135, 171); }
+.color-3 { background-color: rgb(100, 90, 157); }
+.color-4 { background-color: #2f0883; }
+.color-5 { background-color: rgb(198, 198, 25); }
+.color-6 { background-color: rgb(255, 119, 0); }
+.color-7 { background-color: rgb(174, 2, 2); }
+.color-8 { background-color: rgb(143, 140, 140); }
+.color-9 { background-color: rgb(163, 160, 160); }
+
+/* Style table cells */
+th, td {
+    font-size: xx-small;
+    border: 1px solid rgb(251, 248, 248);
+    text-align: center;
+    padding: 0%;
+    /* width:6px;  */
+    height: auto; /* Set the height of each cell */
+}
+
+/* Style header cells */
+th {
+    background-color: #f5eeeecb; /* Light gray background for headers */
+    font-weight: bold; /* Make header text bold */
+}
+
+/* ================================END TABLE STYLES ==========================================    */
+
+.section-title {
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.subtitle1 {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+#colorTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px;
+    margin-left: 0px;  
+}
+
+
+

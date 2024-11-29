@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>BFI Proto .01</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <main class="main">
+        <div class="boxrow top">
+            <h1 class = "page-title">Blue Fleet Intel</h2>
+            <p class="page-tag">WW II Pacific Theater Database  </p> 
+            
+        </div>
+        <div class="navbar">Navbar</div>
+        <div class="boxrow middle">
+            <div class="boxcol left">
+                
+                <div class="left-content">
+                    <ul class="searchtree">
+                        <h3>Search by Unit Type:</h3>
+                        <li>
+                            <label><input type="checkbox" value="Parent 1"> Aircraft Carrers</label>
+                            <span class="tree-item caret">+</span>
+                            <ul class="nested">
+                                <li>
+                                    <label><input type="checkbox" value="Child 1.1"> CV</label>
+                                    <span class="tree-item caret">+</span>
+                                    <ul class="nested">
+                                        <li><label><input type="checkbox" value="Grandchild 1.1.1"> Lexington Class</label></li>
+                                        <li><label><input type="checkbox" value="Grandchild 1.1.2"> Yorktown Class</label></li>
+                                        <li><label><input type="checkbox" value="Grandchild 1.1.2"> Essex Class</label></li>
+                                    </ul>
+                                </li>
+                                <li><label><input type="checkbox" value="Child 1.2"> CVL</label></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" value="Parent 2"> Cruisers</label>
+                            <span class="tree-item caret">+</span>
+                            <ul class="nested">
+                                <li><label><input type="checkbox" value="Child 2.1"> CA</label></li>
+                                <li><label><input type="checkbox" value="Child 2.2"> CL</label></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" value="Parent 2"> Battleships</label>
+                            <span class="tree-item caret">+</span>
+                            <ul class="nested">
+                                <li><label><input type="checkbox" value="Child 2.1"> BB</label></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" value="Parent 2"> Destroyers</label>
+                            <span class="tree-item caret">+</span>
+                            <ul class="nested">
+                                <li><label><input type="checkbox" value="Child 2.1"> DD</label></li>
+                                <li><label><input type="checkbox" value="Child 2.1"> DDE</label></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div style="display: flex; flex-direction: column; text-align: center; margin-top: 1rem; align-items: center;">
+                        <button id="searchButton" style="width: 80px;">Search</button>
+                    </div>
+                </div>
+                
+                <div class="left-advert">
+                    <h3>Ad goes here.</h3>
+                </div>
+                   
+            </div>
+            <div class="boxcol center">
+                <div class="timeline-header">
+                    <h4 class="section-title">Unit Timeline</h4>
+                </div>
+                <div id="controls" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; gap: 10px;">
+                    <button id="prevYear">&lt;&lt;&lt;&lt;</button>
+                    <button id="prevMonth">&lt;&lt;</button>
+                    <span id="date-range" ></span>
+                    <button id="nextMonth">&gt;&gt;</button>
+                    <button id="nextYear">&gt;&gt;&gt;&gt;</button>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <!-- <script src="/scripts/timeline.js"></script> -->
+                    </div>
+                </div>
+                <div class="tooltip" id="tooltip"></div>
+                
+                
+
+                <div id="table-container"><script src="/scripts/shiptable.js"></script>
+            </div>
+            
+         
+        <div class="boxcol right">
+            <div class="right-content">
+                    <ul class="searchtree"><h3>Events:</h3>
+                        <li class="event-title"><b><u>Dec-41</u></b><br>
+                            <p class="event-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ratione, accusamus ab sequi ducimus quia esse labore excepturi deleniti quo consequatur modi vel doloremque porro at unde! Ex, vitae qui!</p></li>
+                        <li class="event-title"><b><u>Jan-42</u></b><br>
+                            <p class="event-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ratione, accusamus ab sequi ducimus quia esse labore excepturi deleniti quo consequatur modi vel doloremque porro at unde! Ex, vitae qui!</p></li>
+                        <li class="event-title"><b><u>Feb-42</u></b><br>
+                            <p class="event-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ratione, accusamus ab sequi ducimus quia esse labore excepturi deleniti quo consequatur modi vel doloremque porro at unde! Ex, vitae qui!</p></li>
+                        <li class="event-title"><b><u>Mar-42</u></b><br>
+                            <p class="event-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ratione, accusamus ab sequi ducimus quia esse labore excepturi deleniti quo consequatur modi vel doloremque porro at unde! Ex, vitae qui!</p></li>
+                        <li class="event-title"><b><u>Apr-42</u></b><br>
+                            <pclass="event-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ratione, accusamus ab sequi ducimus quia esse labore excepturi deleniti quo consequatur modi vel doloremque porro at unde! Ex, vitae qui!</p></li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                        <li>Item 4</li>
+                        <li>Item 5</li>
+                        <li>Item 6</li>
+                    </ul>
+            </div>
+            <div class="right-advert">
+                    <h3>Ad goes here.</h3>
+            </div>
+            </div>
+        </div>
+
+        <div class="boxrow bottom">Footer; Terms of Service, Privacy Policy, Contact Us, etc.
+        </div>    
+    </main>
+    <script src="/scripts/treeview.js"></script>
+    <!-- <script src="/scripts/table.js"></script> -->
+    <!-- <script src="/scripts/timeline.js"></script> -->
+    <!-- <script src="/scripts/shiptable.js"></script> -->
+</body>
+</html>

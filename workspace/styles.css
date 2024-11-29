@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    position: relative;
+}
+
+th[data-has-events="true"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+td {
+    vertical-align: top;
+}
+
+.color-4 {
+    background-color: lightgreen;
+}
+
+.color-7 {
+    background-color: lightcoral;
+}
+
+.color-8 {
+    background-color: lightgray;
+}
