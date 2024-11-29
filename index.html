@@ -17,7 +17,11 @@
             
         </div>
         <div class="navbar">Navbar</div>
+        <!--########################        Middle Section --- Content  BEGIN        ########################-->
+
         <div class="boxrow middle">
+
+            <!--########################        Left Column  --- Content  BEGIN        ########################-->
             <div class="boxcol left">
                 
                 <div class="left-content">
@@ -73,10 +77,25 @@
                 </div>
                    
             </div>
+            <!--########################        Left Column  --- Content   END       ########################-->
+
+
+
+            <!--########################        Center Column  --- Content  BEGIN        ########################-->
             <div class="boxcol center">
+                
+                
+                <!--########################        Timeline HEADER   BEGIN      ########################-->
+
+
                 <div class="timeline-header">
                     <h4 class="section-title">Unit Timeline</h4>
                 </div>
+
+                <!--########################        Timeline HEADER   END      ########################-->
+
+
+                <!--########################        Date Controls BEGIN         ########################-->
                 <div id="controls" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; gap: 10px;">
                     <button id="prevYear">&lt;&lt;&lt;&lt;</button>
                     <button id="prevMonth">&lt;&lt;</button>
@@ -84,18 +103,34 @@
                     <button id="nextMonth">&gt;&gt;</button>
                     <button id="nextYear">&gt;&gt;&gt;&gt;</button>
                 </div>
+                <!--########################        Date Controls END         ########################-->
+
+                <!--########################        Timeline Element BEGIN         ########################-->
                 <div class="timeline-container">
                     <div class="timeline">
                         <!-- <script src="/scripts/timeline.js"></script> -->
                     </div>
                 </div>
                 <div class="tooltip" id="tooltip"></div>
+
+                
+                <!--########################        Timeline Element END      ########################-->
                 
                 
+                <!--########################        Unit Status Table    BEGIN      ########################-->
 
                 <div id="table-container"><script src="/scripts/shiptable.js"></script></div>
-            
+
+
+                <!--########################        Unit Status Table     END     ########################-->
+
+
          </div>
+         <!--########################        Center Column  --- Content    END      ########################-->
+
+
+         <!--########################        Right Column  --- Content   BEGIN      ########################-->
+         
         <div class="boxcol right">
             <div class="right-content">
                     <ul class="searchtree"><h3>Events:</h3>
@@ -121,9 +156,14 @@
             </div>
             </div>
         </div>
+        <!--########################        Right Column  --- Content   END        ########################-->
+
+
+        <!--########################        Middle Section --- Content    END       ########################-->
 
         <div class="boxrow bottom">Footer; Terms of Service, Privacy Policy, Contact Us, etc.
         </div>    
+        
     </main>
     <script src="/scripts/treeview.js"></script>
     <!-- <script src="/scripts/table.js"></script> -->
