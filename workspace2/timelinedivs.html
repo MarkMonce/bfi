@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Flexbox Circles</title>
+    <style>
+        /* Flex container */
+        /* Flex container */
+        .timeline {
+            display: flex;
+            position: relative; /* Enables absolute positioning for children */
+            width: 100%; /* Full-width container */
+            height: 100px; /* Example height */
+            background: #f0f0f0; /* Light background for visibility */
+            align-items: center; /* Vertically centers the circles */
+            box-sizing: border-box; /* Include padding in width/height calculations */
+            overflow: hidden; /* Prevent elements from going outside */
+            padding: 0; /* Ensure no padding interferes */
+        }
+
+        .circle {
+            position: absolute; /* Allows precise positioning inside the timeline */
+            width: 20px; /* Fixed circle diameter */
+            height: 20px;
+            background-color: blue; /* Circle color */
+            border-radius: 50%; /* Makes the div circular */
+            transform: translate(-50%, -50%); /* Centers the circle based on its coordinates */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="timeline" id="timeline">
+        <div id="circle1" class="circle">1</div>
+        <div id="circle2" class="circle">2</div>
+        <div id="circle3" class="circle">3</div>
+    </div>
+
+    <script>
+
+        // Example positions (1-100 scale for percentages across the timeline)
+        const positions = [10, 50, 60]; // Adjust these as needed
+
+        // Get the container and its width
+        const timeline = document.querySelector(".timeline");
+        const circles = document.querySelectorAll(".circle");
+        const timelineWidth = timeline.offsetWidth; // Total width of the timeline container
+
+        // Position each circle dynamically
+        circles.forEach((circle, index) => {
+            const positionPercentage = positions[index]; // Get percentage for this circle
+            const positionInPixels = (timelineWidth * positionPercentage) / 100; // Convert percentage to pixels
+
+            // Position the circle
+            circle.style.left = `${positionInPixels}px`; // Horizontal position
+            circle.style.top = `50%`; // Vertically center the circle
+});
+
+
+        
+
+
+  
+    </script>
+</body>
+</html>
+
