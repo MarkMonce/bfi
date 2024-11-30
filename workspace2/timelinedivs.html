@@ -33,8 +33,8 @@
 
         .circle {
             position: absolute; /* Allows precise positioning inside the timeline */
-            width: 20px; /* Fixed circle diameter */
-            height: 20px;
+            width: 16px; /* Fixed circle diameter */
+            height: 16px;
             background-color: rgb(76, 76, 197); /* Circle color */
             border-radius: 50%; /* Makes the div circular */
             transform: translate(-50%, -50%); /* Centers the circle based on its coordinates */
@@ -44,9 +44,9 @@
     </style>
 </head>
 <body>
-    <div class="timeline_section">
-    <div class="timeline" id="timeline">
-        <div id="circle1" class="circle"></div>
+    <div class="timeline_section"> <!--aligns to timeline-container div in index.html-->
+    <div class="timeline" id="timeline"><!--aligns to timeline div in index.html-->
+        <div id="circle1" class="circle"></div><!--to be dynamically created by script-->
         <div id="circle2" class="circle"></div>
         <div id="circle3" class="circle"></div>
     </div>
@@ -72,12 +72,8 @@
             circle.style.top = `50%`; // Vertically center the circle
 });
 
-
-        
-
-
-  
     </script>
+
 </body>
 </html>
 

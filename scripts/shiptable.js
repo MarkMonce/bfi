@@ -247,29 +247,38 @@ function fetchWarshipData(startDate) {
         });
 }
 
+function fetchEventsData(startDate) {
+   console.log(startDate);
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     fetchWarshipData(currentStartDate);
+    fetchEventsData(currentStartDate);
 
     // Button event handlers
     document.getElementById("prevMonth").addEventListener("click", () => {
         currentStartDate = adjustDate(currentStartDate, -1);
         fetchWarshipData(currentStartDate);
+        fetchEventsData(currentStartDate);
     });
 
     document.getElementById("nextMonth").addEventListener("click", () => {
         currentStartDate = adjustDate(currentStartDate, 1);
         fetchWarshipData(currentStartDate);
+        fetchEventsData(currentStartDate);
     });
 
     document.getElementById("prevYear").addEventListener("click", () => {
         currentStartDate = adjustDate(currentStartDate, -12);
         fetchWarshipData(currentStartDate);
+        fetchEventsData(currentStartDate);
     });
 
     document.getElementById("nextYear").addEventListener("click", () => {
         currentStartDate = adjustDate(currentStartDate, 12);
         fetchWarshipData(currentStartDate);
+        fetchEventsData(currentStartDate);
     });
 });
 
