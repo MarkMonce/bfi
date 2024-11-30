@@ -1,0 +1,43 @@
+# macOS system files
+.DS_Store
+
+# Git-specific metadata
+.git/
+
+# Node.js dependencies (if applicable)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache directories
+.cache/
+*.cache
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Python bytecode files (if applicable)
+__pycache__/
+*.pyc
+*.pyo
+
+# Workspace and temp files
+workspace/
+*.tmp
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Ignore all __MACOSX folders
+__MACOSX/
+
+# Ignore all JSON data files (optional; remove this if needed)
+*.json
