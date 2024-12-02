@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aligned Timeline</title>
+    <style>
+        .body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .lev1 {
+            display: flex;
+            height: 15vh;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        .lev2 {
+            display: flex;
+            flex-direction: row; /* Arrange .l2Left and .l2Right horizontally */
+            align-items: flex-start; /* Align at the top of .lev2 */
+            justify-content: space-between; /* Space between elements */
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid black;
+            height: auto; /* Dynamic height adjustment */
+            padding-bottom: 20px; /* Add padding to create space below */
+        }
+
+        .l2Left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20%; /* Adjust as needed */
+            border: 1px solid black;
+            height: 100%; /* Match height of .lev2 */
+            box-sizing: border-box; /* Include padding and border in width/height */
+        }
+
+        .l2Right {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 80%; /* Occupy remaining space */
+            border: 1px solid rgb(92, 90, 90);
+            position: relative;
+            overflow: visible; /* Allow dynamic growth */
+            height: auto; /* Adjust height dynamically */
+            padding-top: 20px; /* Space above for alignment */
+        }
+
+        .line {
+            position: absolute; /* Fixed position within .l2Right */
+            width: 100%;
+            height: 2px;
+            background-color: rgb(68, 65, 65);
+            top: 50%; /* Positioned halfway in the .l2Right container */
+            transform: translateY(-1px); /* Adjust to intersect halfway through circle */
+            z-index: 1; /* Ensure it appears below circles */
+        }
+
+        .circle {
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: rgb(74, 74, 179);
+            bottom: calc(50% - 7.5px); /* Align circle's center on the line */
+            transform: translateX(-50%);
+            z-index: 2; /* Ensure it appears above the line */
+        }
+
+        .label-table {
+            width: 100%;
+            margin-top: 30px; /* Create space between the timeline and the table */
+        }
+
+        table {
+            border: none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            width: calc(100% / 12);
+            height: 2.5vh;
+            font-family: sans-serif;
+            font-size: xx-small;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .bottom-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ccc;
+        }
+
+        .bottom-controls input, .bottom-controls button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .bottom-controls input {
+            width: 50%;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="lev1">
+        Level 1
+    </div>
+    <div class="lev2">
+        <div class="l2Left">Status Legend</div>
+        <div class="l2Right">
+            <div class="line" id="timeline"></div>
+            <div class="label-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Jan-42</td>
+                            <td>Feb-42</td>
+                            <td>Mar-42</td>
+                            <td>Apr-42</td>
+                            <td>May-42</td>
+                            <td>Jun-42</td>
+                            <td>Jul-42</td>
+                            <td>Aug-42</td>
+                            <td>Sep-42</td>
+                            <td>Oct-42</td>
+                            <td>Nov-42</td>
+                            <td>Dec-42</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-controls">
+        <input type="text" id="monthInput" placeholder="Enter month-year (e.g., Nov-42)" />
+        <input type="text" id="detailsInput" placeholder="Enter event details" />
+        <button id="new_event">Add Event</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeline = document.querySelector(".line");
+            const table = document.querySelector("table tbody");
+            const l2RightDiv = document.querySelector(".l2Right");
+            const lev2Div = document.querySelector(".lev2");
+            const monthMap = {
+                "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
+                "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
+                "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
+            };
+
+            const newEventButton = document.getElementById('new_event');
+            const monthInput = document.getElementById('monthInput');
+            const detailsInput = document.getElementById('detailsInput');
+
+            function adjustHeights() {
+                const tableHeight = table.offsetHeight;
+                l2RightDiv.style.height = `${tableHeight + 50}px`; // Adjust for line and padding
+                lev2Div.style.height = `${l2RightDiv.offsetHeight}px`;
+            }
+
+            newEventButton.addEventListener('click', () => {
+                const monthYear = monthInput.value.trim();
+                const eventDetails = detailsInput.value.trim();
+
+                if (!monthMap.hasOwnProperty(monthYear)) {
+                    alert('Please enter a valid month-year (e.g., Nov-42).');
+                    return;
+                }
+
+                if (!eventDetails) {
+                    alert('Please enter event details.');
+                    return;
+                }
+
+                const columnIndex = monthMap[monthYear];
+                const rows = table.querySelectorAll("tr");
+                let targetCell = null;
+
+                for (const row of rows) {
+                    const cell = row.children[columnIndex];
+                    if (!cell.textContent) {
+                        targetCell = cell;
+                        break;
+                    }
+                }
+
+                if (!targetCell) {
+                    const newRow = document.createElement("tr");
+                    for (let i = 0; i < 12; i++) {
+                        const newCell = document.createElement("td");
+                        newRow.appendChild(newCell);
+                    }
+                    table.appendChild(newRow);
+                    targetCell = newRow.children[columnIndex];
+                    adjustHeights();
+                }
+
+                targetCell.textContent = eventDetails;
+
+                const timelineWidth = timeline.getBoundingClientRect().width;
+                const columnWidth = timelineWidth / 12;
+                const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
+
+                const newCircle = document.createElement("div");
+                newCircle.classList.add("circle");
+                newCircle.setAttribute("title", eventDetails);
+                newCircle.style.left = `${positionInPixels}px`;
+                timeline.appendChild(newCircle);
+
+                adjustHeights();
+            });
+
+            adjustHeights();
+            const observer = new MutationObserver(adjustHeights);
+            observer.observe(table, { childList: true, subtree: true });
+        });
+    </script>
+</body>
+</html>

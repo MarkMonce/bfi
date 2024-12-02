@@ -23,64 +23,78 @@
         }
 
         .lev2 {
-            display: flex;
-            height: 12.5vh;
-            width: 50vw;
-            border: 1px solid black;
-            margin: 0 auto;
-            justify-content: space-between;
-        }
+    display: flex;
+    flex-direction: row; /* Arrange .l2Left and .l2Right horizontally */
+    align-items: flex-start; /* Align at the top of .lev2 */
+    justify-content: space-between; /* Space between elements */
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid black;
+    height: auto; /* Dynamic height adjustment */
+    padding-bottom: 20px; /* Add padding to create space below */
+}
 
-        .l2Left {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 12.5vh;
-            width: 20%;
-            border: 1px solid black;
-        }
+.l2Left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%; /* Adjust as needed */
+    border: 1px solid black;
+    height: 100%; /* Match height of .lev2 */
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
 
-        .l2Right {
-            display: flex;
-            flex-direction: column;
-            height: 12.5vh;
-            width: 80%;
-            border: 1px solid rgb(92, 90, 90);
-            position: relative;
-        }
+.l2Right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%; /* Occupy remaining space */
+    border: 1px solid rgb(92, 90, 90);
+    position: relative;
+    overflow: visible; /* Allow dynamic growth */
+    height: auto; /* Adjust height dynamically */
+    padding-top: 20px; /* Space above for alignment */
+}
 
-        .line {
-            position: relative;
-            margin-top: 4vh;
-            margin-bottom: 2vh;
-            height: 2px;
-            width: 100%;
-            background-color: rgb(68, 65, 65);
-        }
+.line {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(68, 65, 65);
+    margin-top: 20px; /* Adjust vertical placement */
+    z-index: 1; /* Ensure it sits below the circles */
+}
 
-        .circle {
-            position: absolute;
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            background-color: rgb(74, 74, 179);
-            top: -6.5px;
-            transform: translateX(-50%);
-        }
+.circle {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: rgb(74, 74, 179);
+    top: 18px; /* Position circles aligned with the line */
+    transform: translateX(-50%);
+}
 
-        table {
-            border: none;
-            border-collapse: collapse;
-            width: 100%;
-        }
+.label-table {
+    width: 100%;
+    margin-top: 30px; /* Create space between the timeline and the table */
+}
 
-        td {
-            width: calc(100% / 12);
-            height: 2.5vh;
-            font-family: sans-serif;
-            font-size: xx-small;
-            text-align: center;
-        }
+table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    width: calc(100% / 12);
+    height: 2.5vh;
+    font-family: sans-serif;
+    font-size: xx-small;
+    text-align: center;
+    vertical-align: top;
+}
+
 
         .bottom-controls {
             display: flex;
@@ -114,131 +128,132 @@
             <div class="line" id="timeline"></div>
             <div class="label-table">
                 <table>
-                    <tr>
-                        <td>Jan-42</td>
-                        <td>Feb-42</td>
-                        <td>Mar-42</td>
-                        <td>Apr-42</td>
-                        <td>May-42</td>
-                        <td>Jun-42</td>
-                        <td>Jul-42</td>
-                        <td>Aug-42</td>
-                        <td>Sep-42</td>
-                        <td>Oct-42</td>
-                        <td>Nov-42</td>
-                        <td>Dec-42</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <td>Jan-42</td>
+                            <td>Feb-42</td>
+                            <td>Mar-42</td>
+                            <td>Apr-42</td>
+                            <td>May-42</td>
+                            <td>Jun-42</td>
+                            <td>Jul-42</td>
+                            <td>Aug-42</td>
+                            <td>Sep-42</td>
+                            <td>Oct-42</td>
+                            <td>Nov-42</td>
+                            <td>Dec-42</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
     <div class="bottom-controls">
         <input type="text" id="monthInput" placeholder="Enter month-year (e.g., Nov-42)" />
-        <input type="text" id="codeInput" placeholder="Enter event code" />
+        <input type="text" id="detailsInput" placeholder="Enter event details" />
         <button id="new_event">Add Event</button>
     </div>
     <script>
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     const timeline = document.querySelector(".line");
-        //     const table = document.querySelector("table tr");
-
-        //     const monthMap = {
-        //         "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
-        //         "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
-        //         "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
-        //     };
-
-        //     const newEventButton = document.getElementById('new_event');
-        //     const monthInput = document.getElementById('monthInput');
-        //     const codeInput = document.getElementById('codeInput');
-
-        //     if (newEventButton) {
-        //         newEventButton.addEventListener('click', () => {
-        //             const monthYear = monthInput.value.trim();
-        //             const eventCode = codeInput.value.trim();
-
-        //             if (!monthMap.hasOwnProperty(monthYear)) {
-        //                 alert('Please enter a valid month-year (e.g., Nov-42).');
-        //                 return;
-        //             }
-
-        //             if (!eventCode) {
-        //                 alert('Please enter an event code.');
-        //                 return;
-        //             }
-
-        //             const columnIndex = monthMap[monthYear];
-        //             const column = table.children[columnIndex];
-        //             const columnWidth = timeline.getBoundingClientRect().width / 12;
-        //             const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
-
-        //             const newCircle = document.createElement("div");
-        //             newCircle.classList.add("circle");
-        //             newCircle.setAttribute("title", eventCode);
-        //             newCircle.style.left = `${positionInPixels}px`;
-        //             timeline.appendChild(newCircle);
-        //         });
-        //     }
-        // });
         document.addEventListener('DOMContentLoaded', () => {
-            const timeline = document.querySelector(".line");
-            const table = document.querySelector("table tr");
+    const timeline = document.querySelector(".line");
+    const table = document.querySelector("table tbody");
+    const l2RightDiv = document.querySelector(".l2Right");
+    const lev2Div = document.querySelector(".lev2");
+    const monthMap = {
+        "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
+        "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
+        "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
+    };
 
-            const monthMap = {
-                "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
-                "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
-                "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
-            };
+    const newEventButton = document.getElementById('new_event');
+    const monthInput = document.getElementById('monthInput');
+    const detailsInput = document.getElementById('detailsInput');
 
-            const newEventButton = document.getElementById('new_event');
-            const monthInput = document.getElementById('monthInput');
-            const codeInput = document.getElementById('codeInput');
-            const circles = [];
+    function adjustHeights() {
+        // Adjust .l2Right and .lev2 heights to fit content
+        const tableHeight = table.offsetHeight;
+        const timelineHeight = timeline.offsetHeight;
+        l2RightDiv.style.height = `${tableHeight + timelineHeight + 20}px`; // Add padding
+        lev2Div.style.height = `${l2RightDiv.offsetHeight + 20}px`; // Sync parent container
+    }
 
-            function repositionCircles() {
-                const timelineWidth = timeline.getBoundingClientRect().width;
-                const columnWidth = timelineWidth / 12;
+    newEventButton.addEventListener('click', () => {
+        const monthYear = monthInput.value.trim();
+        const eventDetails = detailsInput.value.trim();
 
-                circles.forEach(circle => {
-                    const { columnIndex, element } = circle;
-                    const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
-                    element.style.left = `${positionInPixels}px`;
-                });
+        if (!monthMap.hasOwnProperty(monthYear)) {
+            alert('Please enter a valid month-year (e.g., Nov-42).');
+            return;
+        }
+
+        if (!eventDetails) {
+            alert('Please enter event details.');
+            return;
+        }
+
+        const columnIndex = monthMap[monthYear];
+        const rows = table.querySelectorAll("tr");
+        let targetCell = null;
+
+        for (const row of rows) {
+            const cell = row.children[columnIndex];
+            if (!cell.textContent) {
+                targetCell = cell;
+                break;
             }
+        }
 
-            if (newEventButton) {
-                newEventButton.addEventListener('click', () => {
-                    const monthYear = monthInput.value.trim();
-                    const eventCode = codeInput.value.trim();
-
-                    if (!monthMap.hasOwnProperty(monthYear)) {
-                        alert('Please enter a valid month-year (e.g., Nov-42).');
-                        return;
-                    }
-
-                    if (!eventCode) {
-                        alert('Please enter an event code.');
-                        return;
-                    }
-
-                    const columnIndex = monthMap[monthYear];
-                    const columnWidth = timeline.getBoundingClientRect().width / 12;
-                    const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
-
-                    const newCircle = document.createElement("div");
-                    newCircle.classList.add("circle");
-                    newCircle.setAttribute("title", eventCode);
-                    newCircle.style.left = `${positionInPixels}px`;
-                    timeline.appendChild(newCircle);
-
-                    // Store circle information for repositioning on resize
-                    circles.push({ columnIndex, element: newCircle });
-                });
+        if (!targetCell) {
+            const newRow = document.createElement("tr");
+            for (let i = 0; i < 12; i++) {
+                const newCell = document.createElement("td");
+                newRow.appendChild(newCell);
             }
+            table.appendChild(newRow);
+            targetCell = newRow.children[columnIndex];
+        }
 
-            // Reposition circles on window resize
-            window.addEventListener('resize', repositionCircles);
-        });
+        targetCell.textContent = eventDetails;
+
+        // Add a circle above the timeline
+        const timelineWidth = timeline.getBoundingClientRect().width;
+        const columnWidth = timelineWidth / 12;
+        const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
+
+        const newCircle = document.createElement("div");
+        newCircle.classList.add("circle");
+        newCircle.setAttribute("title", eventDetails);
+        newCircle.style.left = `${positionInPixels}px`;
+        timeline.appendChild(newCircle);
+
+        // Adjust heights
+        adjustHeights();
+    });
+
+    // Initial adjustment
+    adjustHeights();
+
+    // Monitor changes in the table
+    const observer = new MutationObserver(adjustHeights);
+    observer.observe(table, { childList: true, subtree: true });
+});
+
 
     </script>
 </body>
