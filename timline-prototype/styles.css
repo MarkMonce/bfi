@@ -21,7 +21,7 @@ body {
     flex-direction: row;
     align-items: flex-start; /* Controls vertical alignment */
     justify-content: space-between; /* Space between children */
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
     border: 1px solid black;
     height: auto; /* Allow the container to grow naturally */
@@ -34,7 +34,7 @@ body {
     justify-content: center;
     width: 20%; /* Adjust proportionally */
     border: none;
-    height: 100px; /* Reduced height */
+    height: 70px; /* Reduced height */
     box-sizing: border-box;
     padding: 0; /* No extra spacing */
 }
@@ -43,7 +43,7 @@ body {
     position: relative;
     width: 80%;
     border: none;
-    height: 100px; /* Matches .l2Left */
+    height: 70px; /* Matches .l2Left */
     overflow: hidden;
     padding: 0; /* Minimal spacing */
 }
@@ -51,8 +51,8 @@ body {
 .line {
     position: absolute;
     width: 100%;
-    height: 2px;
-    background-color: rgb(68, 65, 65);
+    height: 4px;
+    background-color: rgb(131, 126, 221);
     top: 15%;
     z-index: 1;
     
@@ -84,7 +84,7 @@ table {
 td {
     width: calc(100% / 12);
     height: 2.5vh;
-    font-family: sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: xx-small;
     text-align: center;
     vertical-align: top;

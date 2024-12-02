@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events with Headers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="lev1">
+        Level 1
+    </div>
+    <div class="lev2">
+        <div class="l2Left">Status Legend</div>
+        <div class="l2Right">
+            <div class="line" id="timeline"></div>
+            <div class="label-table">
+                <table>
+                    <thead id="tableHeader">
+                        <!-- Headers will be dynamically populated -->
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-controls">
+        <input type="date" id="startDateInput" placeholder="Enter start date" />
+        <button id="loadEvents">Load Events</button>
+        <input type="text" id="monthInput" placeholder="Enter month-year (e.g., Nov-42)" />
+        <input type="text" id="detailsInput" placeholder="Enter event details" />
+        <button id="new_event">Add Event</button>
+    </div>
+    <script src="script_with_headers.js"></script>
+</body>
+</html>

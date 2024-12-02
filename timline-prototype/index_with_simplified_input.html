@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline with Simplified Input</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="lev1">
+        Level 1
+    </div>
+    <div class="lev2">
+        <div class="l2Left">Status Legend</div>
+        <div class="l2Right">
+            <div class="line" id="timeline"></div>
+            <div class="label-table">
+                <table>
+                    <thead id="tableHeader">
+                        <!-- Headers will be dynamically populated -->
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-controls">
+        <input type="text" id="startDateInput" placeholder="Enter start month and year (e.g., Jan-42)" />
+        <button id="loadEvents">Load Events</button>
+    </div>
+    <!-- <script src="script_with_simplified_input.js"></script> -->
+    <script src="script_with_no_headers.js"></script>
+</body>
+</html>
