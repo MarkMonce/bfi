@@ -9,6 +9,7 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Center children horizontally */
+            justify-content: space-between; /* Space items evenly */
             height: 100vh;
             margin: 0;
             padding: 0;
@@ -67,18 +68,6 @@
             transform: translateX(-50%); /* Center the circle horizontally */
         }
 
-        .item1 {
-            left: calc((100% / 12) * 0.5); /* Centered above column 1 */
-        }
-
-        .item2 {
-            left: calc((100% / 12) * 5.5); /* Centered above column 6 */
-        }
-
-        .item3 {
-            left: calc((100% / 12) * 9.5); /* Centered above column 10 */
-        }
-
         table {
             border: none;
             border-collapse: collapse;
@@ -92,23 +81,53 @@
             font-size: xx-small;
             text-align: center;
         }
+
+        .bottom-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ccc;
+        }
+
+        .bottom-controls input, .bottom-controls button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .bottom-controls input {
+            width: 50%;
+        }
     </style>
 </head>
 <body class="body">
     <div class="lev1">
         Level 1
     </div>
-    <div class="lev2"> <!-- ALIGNS TO BOXCOL CENTER-->
-        <div class="l2Left">Status Legend</div> <!-- NEW DIV TO BE CREATED WILL CONTAIN color legend for warship table and should help align timelind div to table id and name columns-->
-        <div class="l2Right"> <!-- ALIGNS TO timeline-container-->
-            <!-- Timeline container -->
-            <div class="line"> <!--aligns to timeline-->
-                <div class="circle item1"></div>
-                <div class="circle item2"></div>
-                <div class="circle item3"></div>
-            </div>
-            <div class="label-table"><!--new div that needs to be created about warship table header-->
+    <div class="lev2">
+        <div class="l2Left">Status Legend</div>
+        <div class="l2Right">
+            <div class="line" id="timeline"></div>
+            <div class="label-table">
                 <table>
+                    <tr>
+                        <td>Jan-42</td>
+                        <td>Feb-42</td>
+                        <td>Mar-42</td>
+                        <td>Apr-42</td>
+                        <td>May-42</td>
+                        <td>Jun-42</td>
+                        <td>Jul-42</td>
+                        <td>Aug-42</td>
+                        <td>Sep-42</td>
+                        <td>Oct-42</td>
+                        <td>Nov-42</td>
+                        <td>Dec-42</td>
+                    </tr>
                     <tr>
                         <td>Pearl Harbor</td>
                         <td></td>
@@ -127,6 +146,48 @@
             </div>
         </div>
     </div>
+    <div class="bottom-controls">
+        <input type="number" id="positionInput" placeholder="Enter position (1-100)" />
+        <input type="text" id="codeInput" placeholder="Enter event code" />
+        <button id="new_event">Add Event</button>
+    </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeline = document.querySelector(".line");
+
+            const newEventButton = document.getElementById('new_event');
+            const positionInput = document.getElementById('positionInput');
+            const codeInput = document.getElementById('codeInput');
+
+            if (newEventButton) {
+                newEventButton.addEventListener('click', function () {
+                    const positionPercentage = parseFloat(positionInput.value);
+                    const eventCode = codeInput.value.trim();
+
+                    if (isNaN(positionPercentage) || positionPercentage < 1 || positionPercentage > 100) {
+                        alert('Please enter a valid number between 1 and 100.');
+                        return;
+                    }
+
+                    if (!eventCode) {
+                        alert('Please enter an event code.');
+                        return;
+                    }
+
+                    const newCircle = document.createElement("div");
+                    newCircle.classList.add("circle");
+                    newCircle.setAttribute("title", eventCode);
+                    timeline.appendChild(newCircle);
+
+                    // Use getBoundingClientRect() to get the accurate width
+                    const timelineWidth = timeline.getBoundingClientRect().width;
+                    const positionInPixels = (timelineWidth * positionPercentage) / 100;
+                    newCircle.style.left = `${positionInPixels}px`;
+                });
+            }
+        });
+
+    </script>
 </body>
 </html>
-
