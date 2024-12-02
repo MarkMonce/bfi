@@ -8,8 +8,8 @@
         .body {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center children horizontally */
-            justify-content: space-between; /* Space items evenly */
+            align-items: center;
+            justify-content: space-between;
             height: 100vh;
             margin: 0;
             padding: 0;
@@ -25,16 +25,16 @@
         .lev2 {
             display: flex;
             height: 12.5vh;
-            width: 50vw; /* Specify the width */
+            width: 50vw;
             border: 1px solid black;
-            margin: 0 auto; /* Center horizontally */
-            justify-content: space-between; /* Align children inside .lev2 */
+            margin: 0 auto;
+            justify-content: space-between;
         }
 
         .l2Left {
             display: flex;
-            align-items: center; /* Center content vertically */
-            justify-content: center; /* Center content horizontally */
+            align-items: center;
+            justify-content: center;
             height: 12.5vh;
             width: 20%;
             border: 1px solid black;
@@ -64,8 +64,8 @@
             width: 15px;
             border-radius: 50%;
             background-color: rgb(74, 74, 179);
-            top: -6.5px; /* Align above the line */
-            transform: translateX(-50%); /* Center the circle horizontally */
+            top: -6.5px;
+            transform: translateX(-50%);
         }
 
         table {
@@ -75,7 +75,7 @@
         }
 
         td {
-            width: calc(100% / 12); /* Ensure each column is 1/12th */
+            width: calc(100% / 12);
             height: 2.5vh;
             font-family: sans-serif;
             font-size: xx-small;
@@ -128,45 +128,91 @@
                         <td>Nov-42</td>
                         <td>Dec-42</td>
                     </tr>
-                    <tr>
-                        <td>Pearl Harbor</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Midway</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Guadalcanal</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                 </table>
             </div>
         </div>
     </div>
     <div class="bottom-controls">
-        <input type="number" id="positionInput" placeholder="Enter position (1-100)" />
+        <input type="text" id="monthInput" placeholder="Enter month-year (e.g., Nov-42)" />
         <input type="text" id="codeInput" placeholder="Enter event code" />
         <button id="new_event">Add Event</button>
     </div>
     <script>
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const timeline = document.querySelector(".line");
+        //     const table = document.querySelector("table tr");
 
+        //     const monthMap = {
+        //         "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
+        //         "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
+        //         "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
+        //     };
+
+        //     const newEventButton = document.getElementById('new_event');
+        //     const monthInput = document.getElementById('monthInput');
+        //     const codeInput = document.getElementById('codeInput');
+
+        //     if (newEventButton) {
+        //         newEventButton.addEventListener('click', () => {
+        //             const monthYear = monthInput.value.trim();
+        //             const eventCode = codeInput.value.trim();
+
+        //             if (!monthMap.hasOwnProperty(monthYear)) {
+        //                 alert('Please enter a valid month-year (e.g., Nov-42).');
+        //                 return;
+        //             }
+
+        //             if (!eventCode) {
+        //                 alert('Please enter an event code.');
+        //                 return;
+        //             }
+
+        //             const columnIndex = monthMap[monthYear];
+        //             const column = table.children[columnIndex];
+        //             const columnWidth = timeline.getBoundingClientRect().width / 12;
+        //             const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
+
+        //             const newCircle = document.createElement("div");
+        //             newCircle.classList.add("circle");
+        //             newCircle.setAttribute("title", eventCode);
+        //             newCircle.style.left = `${positionInPixels}px`;
+        //             timeline.appendChild(newCircle);
+        //         });
+        //     }
+        // });
         document.addEventListener('DOMContentLoaded', () => {
             const timeline = document.querySelector(".line");
+            const table = document.querySelector("table tr");
+
+            const monthMap = {
+                "Jan-42": 0, "Feb-42": 1, "Mar-42": 2, "Apr-42": 3,
+                "May-42": 4, "Jun-42": 5, "Jul-42": 6, "Aug-42": 7,
+                "Sep-42": 8, "Oct-42": 9, "Nov-42": 10, "Dec-42": 11
+            };
 
             const newEventButton = document.getElementById('new_event');
-            const positionInput = document.getElementById('positionInput');
+            const monthInput = document.getElementById('monthInput');
             const codeInput = document.getElementById('codeInput');
+            const circles = [];
+
+            function repositionCircles() {
+                const timelineWidth = timeline.getBoundingClientRect().width;
+                const columnWidth = timelineWidth / 12;
+
+                circles.forEach(circle => {
+                    const { columnIndex, element } = circle;
+                    const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
+                    element.style.left = `${positionInPixels}px`;
+                });
+            }
 
             if (newEventButton) {
-                newEventButton.addEventListener('click', function () {
-                    const positionPercentage = parseFloat(positionInput.value);
+                newEventButton.addEventListener('click', () => {
+                    const monthYear = monthInput.value.trim();
                     const eventCode = codeInput.value.trim();
 
-                    if (isNaN(positionPercentage) || positionPercentage < 1 || positionPercentage > 100) {
-                        alert('Please enter a valid number between 1 and 100.');
+                    if (!monthMap.hasOwnProperty(monthYear)) {
+                        alert('Please enter a valid month-year (e.g., Nov-42).');
                         return;
                     }
 
@@ -175,17 +221,23 @@
                         return;
                     }
 
+                    const columnIndex = monthMap[monthYear];
+                    const columnWidth = timeline.getBoundingClientRect().width / 12;
+                    const positionInPixels = columnWidth * columnIndex + columnWidth / 2;
+
                     const newCircle = document.createElement("div");
                     newCircle.classList.add("circle");
                     newCircle.setAttribute("title", eventCode);
+                    newCircle.style.left = `${positionInPixels}px`;
                     timeline.appendChild(newCircle);
 
-                    // Use getBoundingClientRect() to get the accurate width
-                    const timelineWidth = timeline.getBoundingClientRect().width;
-                    const positionInPixels = (timelineWidth * positionPercentage) / 100;
-                    newCircle.style.left = `${positionInPixels}px`;
+                    // Store circle information for repositioning on resize
+                    circles.push({ columnIndex, element: newCircle });
                 });
             }
+
+            // Reposition circles on window resize
+            window.addEventListener('resize', repositionCircles);
         });
 
     </script>
