@@ -51,7 +51,7 @@
 
     /* FONT STYLE: Adjust the font-family and text size here */
     font-family: 'Courier New', Courier, monospace; /* Change the font-family */
-    font-size: small; /* Options: xx-small, small, medium, large, etc. */
+    font-size: xx-small; /* Options: xx-small, small, medium, large, etc. */
     color: black; /* Adjust font color */
 }
 

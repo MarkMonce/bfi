@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./timline-prototype/timeline_styles_portable.css"><!--ADDED THIS LINE TIMELINE PROTOTYPE-->
     <title>BFI Proto .01</title>
     <style>
         
@@ -108,9 +107,10 @@
 
                 <!--########################        Timeline Element BEGIN         ########################-->
                 <!--NEED NEW DIV HERE FOR STATUS LEGEND AND NEEDS TO ALIGN TO ID and NAME COLUMNS of warship table-->
-                <div class="timeline-container" id="timelineContainer">
-                    
-                   
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <!-- <script src="/scripts/timeline.js"></script> -->
+                    </div>
                 </div>
                 <!--ANOTHER NEW DIV for the event labels table should line up directly with month headers of warship table-->
                 <div class="tooltip" id="tooltip"></div>
@@ -168,7 +168,6 @@
         
     </main>
     <script src="/scripts/treeview.js"></script>
-    <script src="./timline-prototype/portable_timeline_maker.js"></script>
     <!-- <script src="/scripts/table.js"></script> -->
     <!-- <script src="/scripts/timeline.js"></script> -->
     <!-- <script src="/scripts/shiptable.js"></script> -->

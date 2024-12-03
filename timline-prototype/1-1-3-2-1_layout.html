@@ -33,6 +33,7 @@
       display: flex;
       gap: 10px;
       justify-content: space-between;
+      height: 50vh;
     }
     .box-3 .sub-box {
       flex: 1;
@@ -53,6 +54,10 @@
       padding: 20px;
       text-align: center;
     }
+    #box3b {
+      width: 50%;
+      background-color: #f7f4f4;
+    }
   </style>
 </head>
 <body>
@@ -60,14 +65,14 @@
     <div class="box box-1">Box 1</div>
 
     <!-- Timeline Container -->
-    <div class="box box-2" id="timelineContainer" style="width: 100%; margin: auto;">
+    <div class="box box-2" id="timelineContainer" style="width: 50%; margin: auto;">
       <!-- Timeline will be dynamically generated here -->
     </div>
 
     <!-- Additional boxes -->
     <div class="box box-3">
       <div class="sub-box">Box 3A</div>
-      <div class="sub-box">Box 3B</div>
+      <div class="sub-box" id="box3b">Box 3B</div>
       <div class="sub-box">Box 3C</div>
     </div>
     <div class="box box-4">
