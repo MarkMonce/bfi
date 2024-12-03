@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events with Headers</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Timeline with Simplified Input</title>
+    <link rel="stylesheet" href="timeline_styles.css">
 </head>
 <body>
     <div class="lev1">
@@ -31,12 +30,10 @@
         </div>
     </div>
     <div class="bottom-controls">
-        <input type="date" id="startDateInput" placeholder="Enter start date" />
+        <input type="text" id="startDateInput" placeholder="Enter start month and year (e.g., Jan-42)" />
         <button id="loadEvents">Load Events</button>
-        <input type="text" id="monthInput" placeholder="Enter month-year (e.g., Nov-42)" />
-        <input type="text" id="detailsInput" placeholder="Enter event details" />
-        <button id="new_event">Add Event</button>
     </div>
-    <script src="script_with_headers.js"></script>
+    <!-- <script src="script_with_simplified_input.js"></script> -->
+    <script src="render_timeline_on_click.js"></script>
 </body>
 </html>

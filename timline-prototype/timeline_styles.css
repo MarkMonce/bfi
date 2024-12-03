@@ -34,16 +34,16 @@ body {
     justify-content: center;
     width: 20%; /* Adjust proportionally */
     border: none;
-    height: 70px; /* Reduced height */
+    height: 100px; /* Reduced height */
     box-sizing: border-box;
     padding: 0; /* No extra spacing */
 }
 
 .l2Right {
     position: relative;
-    width: 80%;
+    width: 100%;
     border: none;
-    height: 70px; /* Matches .l2Left */
+    height: 100px; /* Matches .l2Left */
     overflow: hidden;
     padding: 0; /* Minimal spacing */
 }
@@ -72,7 +72,7 @@ body {
 .label-table {
     margin-top: 25px; /* Reduced spacing */
     overflow-y: auto;
-    height: calc(100% - 30px); /* Dynamic height */
+    height: calc(100% - 35px); /* Dynamic height */
 }
 
 table {

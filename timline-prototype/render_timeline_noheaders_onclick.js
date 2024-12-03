@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const timeline = document.querySelector(".line");
-    const table = document.querySelector("table tbody");
-    const loadEventsButton = document.getElementById('loadEvents');
-    const startDateInput = document.getElementById('startDateInput');
-
+    const timeline = document.querySelector(".line"); // Get the timeline element
+    const table = document.querySelector("table tbody"); // Get the table element
+    const loadEventsButton = document.getElementById('loadEvents'); // Get the load events button
+    const startDateInput = document.getElementById('startDateInput');   // Get the start date input field
+    // Function to parse the start date input
     function parseStartDate(input) {
         // Parse input in the format "Jan-42"
         const [shortMonth, shortYear] = input.split("-");
@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return new Date(year, monthIndex, 1); // Return normalized date
     }
 
+
+    // Function to generate a month map based on the start date
     function generateMonthMap(startDate) {
         const start = parseStartDate(startDate);
         const map = {};
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return map;
     }
 
+    
+    //  Function to clear the timeline
     function clearTimeline() {
         table.innerHTML = `
             <tr>
@@ -34,13 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
         timeline.innerHTML = ""; // Clear all circles
     }
 
+    // Function to load events
     async function loadEvents() {
+        // Gets the start date from the input field
         const startDate = startDateInput.value;
         if (!startDate) {
             alert("Please enter a valid start month and year (e.g., Jan-42).");
             return;
         }
 
+
+        // Clear existing events and generate a new month map
         clearTimeline(); // Clear existing events
         const monthMap = generateMonthMap(startDate); // Regenerate month map based on user input
 
@@ -52,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn("Could not load events from JSON file. Proceeding with empty timeline.");
         }
 
+
+
+        // Filter events based on the selected date range
         const filteredEvents = events.filter(event => {
             const eventDate = new Date(event["exact date"]);
             const start = parseStartDate(startDate);
@@ -61,16 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
+
+
+        // Render events on the timeline
         filteredEvents.forEach(event => {
-            const eventDate = new Date(event["exact date"]);
-            const monthKey = `${eventDate.toLocaleString('default', { month: 'short' })}-${eventDate.getFullYear().toString().slice(-2)}`;
-            const columnIndex = monthMap[monthKey];
+            const eventDate = new Date(event["exact date"]); //  Get the exact date of the event
+            const monthKey = `${eventDate.toLocaleString('default', { month: 'short' })}-${eventDate.getFullYear().toString().slice(-2)}`; // Get the month key
+            const columnIndex = monthMap[monthKey]; // Get the column index based on the month key
             if (columnIndex === undefined) return;
 
-            const { details } = event;
-            let targetCell = null;
-            const rows = table.querySelectorAll("tr");
+            const { details } = event; //  Get the event details from the record in the JSON file
+            let targetCell = null; // Initialize the target cell
 
+
+            const rows = table.querySelectorAll("tr");  // Get all rows in the table
+            // Find the first empty cell in the column
             for (const row of rows) {
                 const cell = row.children[columnIndex];
                 if (!cell.textContent) {
@@ -78,17 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 }
             }
-
+            // If no empty cell is found, create a new row
             if (!targetCell) {
                 const newRow = document.createElement("tr");
                 for (let i = 0; i < 12; i++) {
                     const newCell = document.createElement("td");
                     newRow.appendChild(newCell);
                 }
-                table.appendChild(newRow);
-                targetCell = newRow.children[columnIndex];
+                table.appendChild(newRow);// Append the new row to the table
+                targetCell = newRow.children[columnIndex]; // Set the target cell to the first cell in the new row
             }
-
+            // Add event details to the cell and creaat a circle on the timeline
             if (targetCell) {
                 targetCell.textContent = details;
 
@@ -97,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const positionInPixels =
                     cellRect.left + cellRect.width / 2 - timelineRect.left;
 
-                const newCircle = document.createElement("div");
-                newCircle.classList.add("circle");
-                newCircle.setAttribute("title", details);
-                newCircle.style.left = `${positionInPixels}px`;
+                const newCircle = document.createElement("div"); // Create a new circle as a div element
+                newCircle.classList.add("circle"); // Add the "circle" class to the new circle for css styling
+                newCircle.setAttribute("title", details); // Set the title attribute to the event details
+                newCircle.style.left = `${positionInPixels}px`; // Set the left position of the circle
                 timeline.appendChild(newCircle);
             }
         });
