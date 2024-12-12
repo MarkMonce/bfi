@@ -2,10 +2,12 @@
   {
     "ID": "CV-1",
     "Name": "USS Langley",
+    "Class": "LANGLEY CLASS",
     "MonthlyStatus": {
       "Nov-41": {
         "code": 4,
-        "details": "Converted to Seaplane Tender (AV-3): 1940"
+        "details": "Converted to Seaplane Tender (AV-3): 1940",
+        "assigned": ["Pacific Fleet", "TF-11"]
       },
       "Dec-41": {
         "code": 4,
@@ -239,7 +241,10 @@
       },
       "May-42": {
         "code": 7,
-        "details": "Battle of Coral Sea; Sunk by Air Attack"
+        "details": "Battle of Coral Sea; Sunk by Air Attack",
+        "assigned": ["Pacific Fleet", "TF-16"],
+        "air-group": ["VB-2", "VS-2", "VF-2", "VT-2"],
+        "event-log":[{"date":"May 8", "event":"Battle of Coral Sea", "details":"Sunk by Air Attack"}] 
       },
       "undefined-42": {
         "code": 8,

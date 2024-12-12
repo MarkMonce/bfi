@@ -1,0 +1,286 @@
+p{
+    padding: 0;
+    margin: 0;
+}
+.main {
+    font-family: 'Courier', monospace;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxrow {
+
+    width: 70vw;
+    height: 15vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid black;
+    margin: none;
+    padding: none;
+    align-items: center;
+}
+
+.top {
+    display:flex;
+    flex-direction: column;
+    background: url("murdersrow-ai3.jpg") no-repeat center center;
+    font-size: x-large;
+    border: none;
+}
+
+.navbar {
+    display:flex;
+    flex-direction: column;
+    height: 4vh;
+    width: 70vw;
+    background-color: rgba(0,0,0, 60%);
+}
+.page-title {
+    color: white;
+    margin-bottom: 0%;
+    margin-top: 5px;
+    /* font-size:x-large; */
+}
+
+.page-tag {
+    font-size: small;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.middle {
+    height: 78vh;
+    flex-direction: row;
+    flex-wrap: none;
+    padding: none;
+    background-color: rgba(0,0,0, 50%);
+    border: none;
+}
+.boxcol {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 32%;
+    border: 1px solid black;
+    margin: none;
+    padding: none;
+}
+
+
+.center {
+    border: 1px solid;
+    width: 66%;
+    margin-left: .5%;
+    margin-right: .5%;
+}
+.left, .right {
+    border: none;
+    width: 16%;
+}
+.center,.left,.right {
+    height: 76vh;
+    background-color: white;
+}
+.bottom {
+    background: rgba(0,0,0, 50%);
+    color: white;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: none;
+    padding: none;
+}
+.left-content, .right-content {
+    height: 78vh;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    background-color: white;
+    border: 1px solid grey;
+    font-size: x-small;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Enable vertical scrolling within each box */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+
+
+}
+
+.left-advert, .right-advert {
+    display: none;
+}
+
+.center {
+    overflow-y: auto; /* Enable vertical scrolling within each box */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+
+.searchtree {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    padding-inline-start:4px;
+}
+
+#searchButton {
+    margin: 0;
+    padding: 0;
+    width: 75%;
+    height: 2.5vh;
+    font-size: x-small;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    bottom:0; /* Align to the bottom of the parent */
+    left: 5; /* Ensure it's aligned to the left edge */
+}
+
+.timeline-header {
+    margin-bottom: 10px;
+}
+.timeline-container {
+    justify-content: center;
+    display: flex;
+    position: relative;
+    width: 90%;
+    margin-left: 10%;
+}
+
+.timeline {
+    display:flex;
+    justify-content: center;
+    position: relative;
+    height: 8vh;
+
+    border-top: 2px solid #555;
+    width: 100%;
+}
+
+.event {
+    position: absolute;
+    top: 1px;
+    width: 8px;
+    height: 8px;
+    background-color: #555;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+.event:hover {
+    background-color: #007bff;
+}
+
+.event .label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: xx-small;
+    white-space: nowrap;
+    color: #333;
+}
+
+.event:nth-child(odd) .label {
+    top: 30px; /* Below the timeline */
+}
+
+.event:nth-child(even) .label {
+    top: 45px; /* Further below the timeline */
+}
+
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+}
+/* Treeview Search Styles*/
+
+/* Container div */
+.tree-container {
+    width: 300px; /* Set width */
+    height: 400px; /* Set height */
+    overflow-y: auto; /* Add scrolling for overflow content */
+    border: 1px solid #ccc; /* Add a border */
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Tree View styles */
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+.tree-item {
+    cursor: pointer;
+}
+.nested {
+    display: none;
+}
+.caret::before {
+    content: "\25B6"; /* Triangle pointing right */
+    display: inline-block;
+    margin-right: 5px;
+}
+.caret-down::before {
+    transform: rotate(90deg); /* Rotate the triangle to point down */
+}
+
+table {
+    
+    border-collapse: collapse;
+    width: 100%;
+    font-size: xx-small;
+}
+th, td {
+    border: 1px solid rgb(251, 248, 248);
+    text-align: center;
+    padding: 0%;
+    width:6px; /* Set the width of each cell */
+    height: .20rem; /* Set the height of each cell */
+}
+/* CSS classes for each color-coded value */
+.color-1 { background-color: lightblue; }
+.color-2 { background-color: rgb(145, 135, 171); }
+.color-3 { background-color: rgb(100, 90, 157); }
+.color-4 { background-color: #2f0883; }
+.color-5 { background-color: rgb(5, 1, 39); }
+.table {
+    margin: 5 auto;
+    width: 100%;
+    border: 2px solid black;
+    padding: 2px
+}
+.section-title {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.subtitle1{
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
